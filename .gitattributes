@@ -1,0 +1,17 @@
+# Alles in de repo en in de werkmap op LF. Een CRLF sloopt de recepten in de
+# Makefile en het script in scripts/.
+* text=auto eol=lf
+
+*.md        text eol=lf diff=markdown
+*.yaml      text eol=lf
+*.json      text eol=lf
+*.sh        text eol=lf
+Makefile    text eol=lf
+
+# Afbeeldingen nooit normaliseren en nooit als tekst diffen.
+*.png  binary
+*.jpg  binary
+*.gif  binary
+
+# De lockfile is gegenereerd: dichtklappen in diffs en weg uit de taalstatistiek.
+package-lock.json linguist-generated=true -diff

@@ -1,0 +1,53 @@
+# Lokale controles vóór een commit. https://pre-commit.com
+#
+#     brew install pre-commit
+#     pre-commit install          # of: make hooks
+#
+# Optioneel. De Pages-workflow leunt nergens op dit bestand.
+
+default_install_hook_types: [pre-commit]
+default_stages: [pre-commit]
+
+repos:
+  # --- Bestandshygiëne: wat geen enkele formatter bijhoudt ---------------------
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-merge-conflict
+      - id: check-added-large-files
+      - id: check-case-conflict
+      - id: detect-private-key
+      - id: check-json
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+        # Twee spaties aan het eind zijn in Markdown een harde regelovergang,
+        # en daarom zet .editorconfig trim_trailing_whitespace = false voor *.md.
+        args: [--markdown-linebreak-ext=md]
+      - id: mixed-line-ending
+        args: [--fix=lf]
+
+  # --- Markdown en YAML -------------------------------------------------------
+  #
+  # `language: system` met opzet: package-lock.json legt de versies al vast.
+  # `npx --no-install` faalt eerlijk als je `npm ci` nog niet gedraaid hebt.
+  - repo: local
+    hooks:
+      - id: prettier
+        name: prettier
+        entry: npx --no-install prettier --write --ignore-unknown
+        language: system
+        types_or: [markdown, yaml, json]
+
+      - id: markdownlint
+        name: markdownlint
+        entry: npx --no-install markdownlint-cli2
+        language: system
+        types: [markdown]
+        pass_filenames: false
+
+      - id: shellcheck
+        name: shellcheck
+        entry: shellcheck
+        language: system
+        types: [shell]

@@ -1,0 +1,18 @@
+{
+  "name": "waarom-is-dit-zo",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Workshopmateriaal over Architecture Decision Records",
+  "scripts": {
+    "slides": "marp -s presentatie/",
+    "slides:build": "marp presentatie/slides.md --html -o dist/index.html",
+    "format": "prettier --write . --ignore-unknown",
+    "format:check": "prettier --check . --ignore-unknown",
+    "lint:md": "markdownlint-cli2"
+  },
+  "devDependencies": {
+    "@marp-team/marp-cli": "^4.5.1",
+    "markdownlint-cli2": "^0.23.2",
+    "prettier": "^3.9.6"
+  }
+}

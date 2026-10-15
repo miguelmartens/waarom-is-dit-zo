@@ -1,0 +1,69 @@
+name: Publiceer slides
+
+# Zet eenmalig in de repo-instellingen: Settings > Pages > Source: GitHub Actions.
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "presentatie/slides.md"
+      - ".github/workflows/pages.yaml"
+      - "package.json"
+      - "package-lock.json"
+      - ".nvmrc"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      # De marp-versie komt uit package-lock.json, zodat de slides hier
+      # hetzelfde bouwen als op je eigen machine.
+      - name: Installeer de vastgelegde versies
+        run: npm ci
+
+      # HTML: dit is wat er op GitHub Pages komt te staan.
+      - name: Bouw de slides
+        run: |
+          npx marp presentatie/slides.md \
+            --html \
+            -o dist/index.html
+
+      # PDF: handig als hand-out. Gebruikt de Chrome die op de runner staat.
+      # Faalt dit ooit, dan is alleen deze stap het probleem - haal hem dan weg.
+      - name: Exporteer PDF
+        run: |
+          npx marp presentatie/slides.md \
+            --html --allow-local-files \
+            --pdf --pdf-notes \
+            -o dist/architecture-decision-records.pdf
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

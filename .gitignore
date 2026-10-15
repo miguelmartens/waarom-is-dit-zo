@@ -1,0 +1,13 @@
+# Node: vastgelegd in package-lock.json, niet in de repo
+/node_modules/
+
+# Build van de slides
+/dist/
+*.pdf
+*.pptx
+
+# Wat `make adr` aanmaakt tijdens het oefenen
+/oefening/decisions/
+
+# macOS
+.DS_Store

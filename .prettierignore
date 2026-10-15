@@ -1,0 +1,16 @@
+.git/
+node_modules/
+
+# Build van de slides.
+dist/
+
+# De presentatie is af en met de hand opgemaakt: het style-blok, de HTML-divs
+# en de --- tussen de slides moeten precies zo blijven staan.
+presentatie/slides.md
+
+# Gegenereerd door `make index`: dat script bepaalt de opmaak.
+**/decisions/README.md
+
+# Templates: Prettier leest {{datum}} in de frontmatter als YAML en maakt er
+# { { datum } } van. Dan vindt scripts/nieuwe-adr.sh de placeholder niet meer.
+templates/
