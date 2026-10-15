@@ -17,6 +17,9 @@ make adr TITEL="Gebruik één Log Analytics-workspace per omgeving"
 Geen terminal bij de hand? Kopieer [`templates/madr.md`](../templates/madr.md) of, als je weinig tijd hebt,
 [`templates/y-statement.md`](../templates/y-statement.md).
 
+Werk je met Copilot of Claude Code? Schrijf eerst zelf. Klaar? Laat de agent je ADR reviewen met
+`/adr-schrijven review oefening/decisions/0001-...md` en vergelijk dat met de review van het andere groepje.
+
 Er is geen goed antwoord. Een ADR voor de optie die jij níet zou kiezen is net zo goed, zolang het waarom erin staat.
 
 ---

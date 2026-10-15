@@ -9,8 +9,8 @@ De sprekersnotities per slide staan in `presentatie/slides.md`; druk `p` in de H
 
 | Versie   | Duur    | Slides                   | Oefening                       |
 | -------- | ------- | ------------------------ | ------------------------------ |
-| Volledig | ~55 min | alle 22                  | 20 min, MADR, met review       |
-| Kort     | ~30 min | sla 4, 10, 15 en 21 over | 10 min, alleen een Y-statement |
+| Volledig | ~60 min | alle 23                  | 20 min, MADR, met review       |
+| Kort     | ~30 min | sla 4, 10, 16 en 22 over | 10 min, alleen een Y-statement |
 
 In de korte versie verwijs je voor het bewaken van beslissingen en de leeslijst naar de repo.
 
@@ -52,19 +52,20 @@ Wacht op een praktijkverhaal uit de zaal. Heb je er een van jezelf, vertel dat b
 - Slide 11: hier komt de discussie onveranderlijk versus levend document. Antwoord: de beslissing verandert niet, aantekeningen met datum mogen erbij. Laat 0003 en 0005 naast elkaar zien
 - Slide 12: niet blijven hangen bij de templates. Kies er één en ga door
 
-## Blok 4 — In de praktijk (slides 13–15, 8 min)
+## Blok 4 — In de praktijk (slides 13–16, 12 min)
 
 - Slide 14: draai `make adr TITEL="..."` live, en laat het gemaakte bestand zien. Daarna `make schoon`
-- Slide 15 is voor de senioren. Bij een jonge zaal of in de korte versie: overslaan
+- Slide 15 (agent): vraag eerst wie al Copilot of Claude Code gebruikt. Demo: plak een stukje PR-discussie in Copilot Chat en roep `/adr-schrijven` aan. Laat zien dat de agent vragen stelt en `TODO: navragen` neerzet in plaats van een reden te verzinnen. Valt de demo weg, open dan `.claude/skills/adr-schrijven/SKILL.md` en laat de regel "Verzin nooit het waarom" zien
+- Slide 16 is voor de senioren. Bij een jonge zaal of in de korte versie: overslaan
 
-## Blok 5 — Het team (slides 16–18, 5 min)
+## Blok 5 — Het team (slides 17–19, 5 min)
 
-- Slide 17: laat `0001-leg-architectuurbeslissingen-vast.md` zien. Dat is precies zo'n eerste ADR met de teamafspraken
-- Slide 18: spreek de juniors direct aan. Hun "waarom" is de reden dat ADR's bestaan
+- Slide 18: laat `0001-leg-architectuurbeslissingen-vast.md` zien. Dat is precies zo'n eerste ADR met de teamafspraken
+- Slide 19: spreek de juniors direct aan. Hun "waarom" is de reden dat ADR's bestaan
 
 ---
 
-## Blok 6 — De oefening (slide 19, 20 min)
+## Blok 6 — De oefening (slide 20, 20 min)
 
 **Doel:** iedereen heeft er één geschreven en er één gereviewd.
 
@@ -82,24 +83,27 @@ Wacht op een praktijkverhaal uit de zaal. Heb je er een van jezelf, vertel dat b
 - _"Wat is de prijs?"_ — de gevolgen zijn vaak alleen voordelen
 - _"Is dit één beslissing?"_ — scenario 3 wordt snel drie ADR's
 
+**Agents in de oefening:** laat groepjes eerst zelf schrijven. Wie klaar is, mag de skill de ADR laten reviewen (`/adr-schrijven review oefening/decisions/0001-...md`) en vergelijken met de review van het andere groepje.
+
 **Nabespreking (als er tijd is):** één groepje leest hun ADR voor, het reviewende groepje zegt wat er goed aan was en één vraag die overbleef.
 
 **Remote of online:** maak breakout rooms, en laat groepjes hun ADR in de chat plakken of als pull request openen.
 
-## Blok 7 — Afsluiten (slides 20–22, 3 min)
+## Blok 7 — Afsluiten (slides 21–23, 3 min)
 
-- Slide 20: _"Welke beslissing ga je deze week als eerste opschrijven?"_
-- Laat slide 22 staan tijdens de vragen
+- Slide 21: _"Welke beslissing ga je deze week als eerste opschrijven?"_
+- Laat slide 23 staan tijdens de vragen
 
 ---
 
 ## Vragen die vaak komen
 
-| Vraag                                              | Antwoord in het kort                                                                       |
-| -------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| "Is dit niet gewoon documentatie?"                 | Documentatie beschrijft hoe het nu is. Een ADR waarom, en wat er niet gekozen werd.        |
-| "Wie heeft hier tijd voor?"                        | Een uur per ADR. Een heropende discussie kost meer.                                        |
-| "Wiki of repo?"                                    | Repo: wordt gereviewd en reist mee met de code. Publiceer als wiki in Azure DevOps.        |
-| "Mag ik een geaccepteerde ADR aanpassen?"          | De beslissing niet. Een aanvulling met datum wel. Anders: nieuwe ADR die de oude vervangt. |
-| "Moeten we alle oude beslissingen nog vastleggen?" | Nee. Begin bij de nieuwe, en leg alleen oude vast als er een "waarom" over komt.           |
-| "Wat als het team het niet eens wordt?"            | Leg vast wie beslist (slide 17). Schrijf de afwijkende mening bij de gevolgen.             |
+| Vraag                                              | Antwoord in het kort                                                                                |
+| -------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| "Is dit niet gewoon documentatie?"                 | Documentatie beschrijft hoe het nu is. Een ADR waarom, en wat er niet gekozen werd.                 |
+| "Wie heeft hier tijd voor?"                        | Een uur per ADR. Een heropende discussie kost meer.                                                 |
+| "Wiki of repo?"                                    | Repo: wordt gereviewd en reist mee met de code. Publiceer als wiki in Azure DevOps.                 |
+| "Mag ik een geaccepteerde ADR aanpassen?"          | De beslissing niet. Een aanvulling met datum wel. Anders: nieuwe ADR die de oude vervangt.          |
+| "Moeten we alle oude beslissingen nog vastleggen?" | Nee. Begin bij de nieuwe, en leg alleen oude vast als er een "waarom" over komt.                    |
+| "Wat als het team het niet eens wordt?"            | Leg vast wie beslist (slide 18). Schrijf de afwijkende mening bij de gevolgen.                      |
+| "Kan AI dit niet gewoon schrijven?"                | Het concept wel. Het waarom niet: dat moet van het team komen. De agent schrijft, het team beslist. |

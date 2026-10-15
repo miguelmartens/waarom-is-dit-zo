@@ -211,6 +211,14 @@ section.tight .rows { gap: 9px; }
 section.tight .row { padding: 12px 22px; }
 section.tight h1 + p em { margin-bottom: 20px; }
 
+/* De agent-slide: twee kaarten plus drie regels code. Kop en kaarten leveren
+   wat hoogte in, zodat het codeblok niet tegen de onderrand aan loopt. */
+section.agent h1 { font-size: 44px; }
+section.agent h1 + p em { margin-bottom: 16px; }
+section.agent .card { padding: 18px 24px; }
+section.agent .card li { margin-bottom: 6px; }
+section.agent pre { font-size: 17px; padding: 14px 20px; }
+
 /* links op de leeslijst */
 section.links .row a { color: var(--ink); text-decoration: none; border-bottom: 2px solid var(--amber); }
 
@@ -400,7 +408,7 @@ beslissingen die het opschrijven waard zijn.
 
 *"Wat speelt er?"*
 
-De situatie zoals die nú is. Eisen, beperkingen, budget, het team. Neutraal opgeschreven: dit zijn de feiten.
+De situatie zoals die nú is: prioriteiten, beperkingen, budget, en wat het team kan. Neutraal: dit zijn de feiten.
 
 </div>
 <div class="card">
@@ -416,7 +424,7 @@ Actief en in volzinnen. "We gaan..." Eén beslissing, geen lijstje.
 
 *"Wat kost het ons?"*
 
-Wat er makkelijker wordt, en wat er moeilijker wordt. Allebei. Ook wat je liever niet opschrijft.
+Wat makkelijker wordt, wat moeilijker wordt, en welke vervolgbeslissingen eruit volgen. Kijk na een maand terug.
 
 </div>
 </div>
@@ -757,6 +765,7 @@ platform-landingzone/
 - Gebiedende wijs, net als je commits: *beheer*, *gebruik*, *bewaar*
 - Kleine letters met streepjes, `.md`
 - Een volgnummer ervoor houdt de volgorde vast
+- Map: `decisions/` of `adr/`, allebei prima
 - In Azure DevOps: publiceer de map als wiki
 
 </div>
@@ -813,6 +822,74 @@ kwam. De ADR is de samenvatting. Link vanuit de ADR naar de PR.
 
 Een afgewezen voorstel ook mergen is niet raar: de volgende die hetzelfde wil
 voorstellen, ziet waarom het toen niet doorging.
+-->
+
+---
+
+<!-- _class: agent -->
+
+# Laat een agent meeschrijven
+
+*Een skill in je repo, voor GitHub Copilot én Claude Code*
+
+<div class="cols">
+<div class="card">
+
+## Wat een agent goed kan
+
+- Een eerste versie uit een PR-thread, een issue of je overlegnotities
+- Nummer, bestandsnaam en template goed, elke keer
+- Opties en nadelen voorstellen die je zelf vergat
+- Reviewen met de zes vragen van de checklist
+
+</div>
+<div class="card dark">
+
+## Wat hij niet kan
+
+Het **waarom** verzinnen. Een geraden reden wordt gelezen en geloofd.
+
+De skill in deze repo vraagt ernaar, zet `TODO: navragen` waar een antwoord ontbreekt, en laat de status altijd op *voorgesteld*.
+
+**Andersom:** een agent die jullie ADR's leest, bouwt er niet stilletjes tegenin.
+
+</div>
+</div>
+
+```console
+.claude/skills/adr-schrijven/                       # deze repo: ons MADR, Nederlands
+.claude/skills/architecture-decision-record-skill/  # ADR-repo: elf templates
+> /adr-schrijven Bicep of Terraform voor de landing zone
+```
+
+<!--
+Een skill is een map met een SKILL.md: instructies die een agent laadt als
+de taak erom vraagt, of als je hem aanroept met /naam. Agent Skills is een open
+standaard (agentskills.io). VS Code zoekt in .github/skills, .claude/skills en
+.agents/skills; Claude Code in .claude/skills. Daarom staat hij hier.
+
+De ADR-repository levert zelf twee skills in skills/:
+- architecture-decision-record-skill: algemeen. Helpt bepalen of iets een ADR
+  verdient, zet een adr/- of decisions/-map op, kiest de bestandsnaam en een van
+  de elf templates, en schrijft context, beslissing en gevolgen.
+- architecture-decision-record-maintainer-skill: alleen voor wie aan die repo
+  zelf werkt. Niet nodig voor ons.
+Installeren: kopieer de map naar .claude/skills/ in je repo, of naar
+~/.claude/skills/ om hem in al je projecten te hebben.
+
+De skill in deze repo is smaller: ons MADR-template, ons script, Nederlands,
+en strenger op het verzinnen van redenen. Kies er één per team.
+
+Demo-suggestie: plak een stukje PR-discussie in Copilot Chat en roep
+/adr-schrijven aan. Laat zien dat hij vragen stelt in plaats van invult.
+
+Het gevaar: AI maakt valkuil 1 (achteraf invullen voor een vinkje) heel
+goedkoop. Een ADR is pas waardevol als iemand erover heeft nagedacht. De agent
+schrijft, het team beslist - in de pull request.
+
+Andersom werkt het ook: zet in AGENTS.md of .github/copilot-instructions.md
+"lees docs/decisions voordat je infrastructuur wijzigt". Dan zijn je ADR's ook
+de context voor je agents. Skill stap 7 doet dit al.
 -->
 
 ---
